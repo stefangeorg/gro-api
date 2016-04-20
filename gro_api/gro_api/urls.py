@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import admin
 from django.conf.urls import include, url, patterns
 from django.conf.urls.static import static
 from django.views import generic as django_generic_views
@@ -22,6 +23,7 @@ class PasswordChangeView(rest_auth_views.PasswordChangeView):
     allow_on_unconfigured_farm = True
 
 auth_patterns = patterns('',
+    url(r'^admin/', admin.site.urls),
     # URLs that do not require a session or valid token
     url(r'^password/reset/$', PasswordResetView.as_view(),
         name='rest_password_reset'),
