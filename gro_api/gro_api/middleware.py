@@ -67,10 +67,13 @@ class FarmIsConfiguredCheckMiddleware:
     def __init__(self):
         if system_layout.current_value is not None:
             raise MiddlewareNotUsed()
+
         class FarmNotConfiguredView(APIView):
             permission_classes = (AllowAny, )
+
             def get(self, request):
                 raise FarmNotConfiguredError()
+            
             post = get
             put = get
             patch = get
@@ -78,7 +81,8 @@ class FarmIsConfiguredCheckMiddleware:
         self.view = FarmNotConfiguredView.as_view()
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        if not getattr(view_func.cls, 'allow_on_unconfigured_farm', False):
+
+        if hasattr(view_func, 'cls') and not getattr(view_func.cls, 'allow_on_unconfigured_farm', False):
             return self.view(request)
 
 
