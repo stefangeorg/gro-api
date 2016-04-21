@@ -73,7 +73,7 @@ class FarmIsConfiguredCheckMiddleware:
 
             def get(self, request):
                 raise FarmNotConfiguredError()
-            
+
             post = get
             put = get
             patch = get

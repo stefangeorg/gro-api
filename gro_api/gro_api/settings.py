@@ -185,8 +185,8 @@ else:
             ".media.mit.edu.",
         ]
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', False)
+SESSION_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', False)
 
 # Databases
 
