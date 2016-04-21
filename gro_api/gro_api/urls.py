@@ -11,19 +11,29 @@ from .routers import BaseRouter
 
 class LoginView(rest_auth_views.LoginView):
     allow_on_unconfigured_farm = True
+
+
 class LogoutView(rest_auth_views.LogoutView):
     allow_on_unconfigured_farm = True
+
+
 class UserDetailsView(rest_auth_views.UserDetailsView):
     allow_on_unconfigured_farm = True
+
+
 class PasswordResetView(rest_auth_views.PasswordResetView):
     allow_on_unconfigured_farm = True
+
+
 class PasswordResetConfirmView(rest_auth_views.PasswordResetConfirmView):
     allow_on_unconfigured_farm = True
+
+
 class PasswordChangeView(rest_auth_views.PasswordChangeView):
     allow_on_unconfigured_farm = True
 
+
 auth_patterns = patterns('',
-    url(r'^admin/', admin.site.urls),
     # URLs that do not require a session or valid token
     url(r'^password/reset/$', PasswordResetView.as_view(),
         name='rest_password_reset'),
@@ -56,6 +66,7 @@ auth_registration_patterns = patterns( '',
 
 def get_current_urls():
     urls = BaseRouter.get_instance().urls + [
+        url(r'^admin/', admin.site.urls),
         url(r'^auth/', include(auth_patterns)),
         url(r'^auth/registration/', include(auth_registration_patterns)),
         url(r'^docs/', include('rest_framework_swagger.urls')),
