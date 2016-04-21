@@ -1,8 +1,10 @@
 from django.contrib import admin
 
-from gro_api.recipes.models import Recipe, RecipeRun, SetPoint, ActuatorOverride
 
-admin.site.register(Recipe)
-admin.site.register(RecipeRun)
-admin.site.register(SetPoint)
-admin.site.register(ActuatorOverride)
+admin.site.register(PlantComment)
+admin.site.register(HarvestEvent)
+admin.site.register(TransferEvent)
+admin.site.register(SowEvent)
+admin.site.register(Plant)
+admin.site.register(PlantType)
+admin.site.register(PlantModel)
